@@ -1,6 +1,6 @@
-# agent-skills
+# Agent Skills
 
-A collection of custom skills for Claude Code and other AI coding agents.
+A collection of custom skills for Claude Code and other AI coding agents, created by me.
 
 ## Skills
 
@@ -15,6 +15,8 @@ Best for: preparing for MLE, Research Scientist, or Applied Scientist roles at a
 Design and style guidelines for personal portfolio websites. Covers layout, typography, color theming, scroll animations, and common pitfalls — for two stacks: **Bootstrap 3 (static HTML/CSS)** and **Next.js + Tailwind + TypeScript**.
 
 Best for: building or overhauling a personal site, with specific rules for GitHub Pages deployment.
+
+### More to come!
 
 ---
 
