@@ -4,13 +4,13 @@ A collection of custom skills for Claude Code and other AI coding agents, create
 
 ## Skills
 
-### [ml-interview-prep](ml-interview-prep/SKILL.md)
+### [ml-interview-prep](skills/ml-interview-prep/SKILL.md)
 
 End-to-end AI/ML interview preparation for practitioners. Given a job description and your background, it produces a gap analysis, personalized study plan, theory Q&A bank, hands-on coding exercises, mock interviews, system design walkthroughs, and optional shareable artifacts (Streamlit dashboard, Jupyter notebook, or one-page summary).
 
 Best for: preparing for MLE, Research Scientist, or Applied Scientist roles at any level (IC3 through Staff/Principal).
 
-### [website-design](website-design/SKILL.md)
+### [website-design](skills/website-design/SKILL.md)
 
 Design and style guidelines for personal portfolio websites. Covers layout, typography, color theming, scroll animations, and common pitfalls — for two stacks: **Bootstrap 3 (static HTML/CSS)** and **Next.js + Tailwind + TypeScript**.
 
