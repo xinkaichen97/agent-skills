@@ -1,0 +1,11 @@
+{
+  "name": "xinkai-skills",
+  "description": "Custom skills by Xinkai Chen — ML interview prep and website design",
+  "version": "1.0.0",
+  "author": {
+    "name": "xinkaichen97"
+  },
+  "license": "MIT",
+  "keywords": ["ml", "interview", "website", "design"],
+  "skills": ["./skills/ml-interview-prep", "./skills/website-design"]
+}

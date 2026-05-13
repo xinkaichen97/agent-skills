@@ -1,0 +1,24 @@
+{
+  "name": "xinkai-skills",
+  "id": "xinkai-skills",
+  "owner": {
+    "name": "xinkaichen97"
+  },
+  "metadata": {
+    "description": "Custom skills by Xinkai Chen — ML interview prep and website design",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "xinkai-skills",
+      "source": "./",
+      "description": "ML interview prep and website design skills",
+      "version": "1.0.0",
+      "author": {
+        "name": "xinkaichen97"
+      },
+      "keywords": ["ml", "interview", "website", "design"],
+      "category": "workflow"
+    }
+  ]
+}
