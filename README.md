@@ -20,65 +20,114 @@ Best for: building or overhauling a personal site, with specific rules for GitHu
 
 ---
 
-## How to use skills in Claude Code
+## Repo structure
 
-Skills are markdown files that tell Claude how to approach a specific task. Claude Code picks them up automatically from two locations:
+```
+agent-skills/
+├── .claude-plugin/
+│   ├── marketplace.json   # marketplace metadata and plugin registration
+│   └── plugin.json        # declares which skill paths to load
+├── skills/
+│   ├── ml-interview-prep/
+│   │   └── SKILL.md
+│   └── website-design/
+│       └── SKILL.md
+└── README.md
+```
 
-| Location | Scope |
-|---|---|
-| `~/.claude/skills/` | Available in every project |
-| `.claude/skills/` | Available only in the current project |
+The `.claude-plugin/` directory is what Claude Code uses to recognize this repo as an installable plugin. Without it, Claude Code treats the repo as a plain GitHub repo and won't surface skills in the `/` picker.
 
-### Installation
+---
 
-Copy the skill file into your skills directory:
+## Installing in Claude Code
+
+### Option 1: Install as a plugin (recommended)
+
+This makes the skills appear in the `/` slash command picker under `xinkai-skills:`.
+
+**Step 1** — Register the marketplace in `~/.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "xinkai-skills": {
+      "source": {
+        "source": "github",
+        "repo": "xinkaichen97/agent-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "xinkai-skills@xinkai-skills": true
+  }
+}
+```
+
+**Step 2** — Restart Claude Code. The skills will appear as:
+
+```
+/xinkai-skills:ml-interview-prep
+/xinkai-skills:website-design
+```
+
+### Option 2: Copy SKILL.md files manually
+
+If you just want to use the skill content without the plugin system:
 
 ```bash
 # Global (all projects)
-cp ml-interview-prep/SKILL.md ~/.claude/skills/ml-interview-prep.md
-cp website-design/SKILL.md ~/.claude/skills/website-design.md
-
-# Or project-local
-mkdir -p .claude/skills
-cp ml-interview-prep/SKILL.md .claude/skills/ml-interview-prep.md
+mkdir -p ~/.claude/skills
+cp skills/ml-interview-prep/SKILL.md ~/.claude/skills/ml-interview-prep.md
+cp skills/website-design/SKILL.md ~/.claude/skills/website-design.md
 ```
 
-### Invoking a skill
-
-Type the skill name as a slash command in the Claude Code chat:
+Then invoke by typing the skill name as a slash command (no namespace prefix):
 
 ```
 /ml-interview-prep
 /website-design
 ```
 
-Claude will load the skill and follow its instructions for the rest of the conversation. You can pass context inline:
+---
 
+## Adding a new skill
+
+1. Create a directory under `skills/`:
+
+```bash
+mkdir skills/my-new-skill
 ```
-/ml-interview-prep I have a Staff MLE interview at a search company next week
-/website-design update my portfolio site to use a terracotta accent color
-```
 
-### Skill file format
-
-Each skill is a `.md` file with a YAML frontmatter block:
+2. Add a `SKILL.md` with YAML frontmatter:
 
 ```markdown
 ---
-name: my-skill
+name: my-new-skill
 description: One sentence describing when to use this skill.
 ---
 
 # Instructions for Claude...
 ```
 
-The `description` field is shown in the skill picker and used by Claude to decide when to auto-trigger the skill.
+3. Register it in `.claude-plugin/plugin.json`:
+
+```json
+{
+  "skills": [
+    "./skills/ml-interview-prep",
+    "./skills/website-design",
+    "./skills/my-new-skill"
+  ]
+}
+```
+
+4. Commit and push. Claude Code will pick it up on next restart.
 
 ---
 
 ## Using these skills in other AI coding agents
 
-The skill files are plain markdown — they work as system prompt additions or context files in any agent that accepts custom instructions.
+The skill files are plain markdown — they work as system prompt additions in any agent that accepts custom instructions.
 
 **Cursor / Windsurf:** paste the skill content into your project's `.cursorrules` or the agent's system prompt field.
 
